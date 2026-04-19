@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IADATA700_mangetamain &mdash; Documentation Mangetamain 1.0</title>
+  <title>Mangetamain - Guide de Développement &mdash; Documentation Mangetamain 1.0</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="src" href="api/modules.html" />
-    <link rel="prev" title="Mangetamain - Analyse de Données de Recettes" href="index.html" /> 
+    <link rel="prev" title="Mangetamain - Analyse de Données Culinaires" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,23 +45,34 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">IADATA700_mangetamain</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#application-streamlit">Application Streamlit</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#lancer">Lancer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fonctionnalites-actuelles">Fonctionnalités actuelles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#diagramme-de-classes-plantuml">Diagramme de classes (PlantUML)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#evolution-possible">Évolution possible</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mangetamain - Guide de Développement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-rapide">🚀 Installation Rapide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pages-de-l-application">📋 Pages de l’Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#home">🏠 Home</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clustering-des-ingredients">🍳 Clustering des Ingrédients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyse-de-popularite">📊 Analyse de Popularité</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture">🏗️ Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optimisations">⚡ Optimisations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preprocessing-offline">Preprocessing Offline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#systeme-de-cache">Système de Cache</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#tests">🧪 Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-complete">📖 Documentation Complète</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/modules.html">src</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Architecture</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="ArchitectureAWS.html">Architecture AWS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ClassDiagram.html">Diagramme de classes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Qualité</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Tests.html">Tests et Couverture</a></li>
 </ul>
 
         </div>
@@ -78,7 +89,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">IADATA700_mangetamain</li>
+      <li class="breadcrumb-item active">Mangetamain - Guide de Développement</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/README.md.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
@@ -88,53 +99,92 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="iadata700-mangetamain">
-<h1>IADATA700_mangetamain<a class="headerlink" href="#iadata700-mangetamain" title="Lien vers cette rubrique"></a></h1>
-<p>Dans le cadre d’un enseignement à Telecom Paris, ce projet consiste en une application web interactive d’analyse de données pour une entreprise fictive : Mangetamain ; leader dans la recommandation B2C de recettes de cuisine à l’ancienne bio.</p>
-<section id="application-streamlit">
-<h2>Application Streamlit<a class="headerlink" href="#application-streamlit" title="Lien vers cette rubrique"></a></h2>
-<p>Version simplifiée et modulaire avec pages : Display, Analysis1 (recettes), Analysis2 (recettes + interactions).</p>
-<section id="lancer">
-<h3>Lancer<a class="headerlink" href="#lancer" title="Lien vers cette rubrique"></a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uv</span> <span class="n">sync</span>
-<span class="n">uv</span> <span class="n">run</span> <span class="n">streamlit</span> <span class="n">run</span> <span class="n">src</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">py</span>
+  <section id="mangetamain-guide-de-developpement">
+<h1>Mangetamain - Guide de Développement<a class="headerlink" href="#mangetamain-guide-de-developpement" title="Lien vers cette rubrique"></a></h1>
+<p>Application web d’analyse de données culinaires développée avec Streamlit.</p>
+<p><strong>Projet académique</strong> - Telecom Paris - IADATA700 Kit Big Data</p>
+<section id="installation-rapide">
+<h2>🚀 Installation Rapide<a class="headerlink" href="#installation-rapide" title="Lien vers cette rubrique"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Cloner et installer</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gorreclu/IADATA700_mangetamain.git
+<span class="nb">cd</span><span class="w"> </span>IADATA700_mangetamain
+uv<span class="w"> </span>sync
+
+<span class="c1"># 2. Générer la matrice précalculée (première fois)</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>utils.preprocess_ingredients_matrix
+
+<span class="c1"># 3. Lancer l&#39;application</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/run_app.py
 </pre></div>
 </div>
-<p>Les chemins par défaut :</p>
-<ul class="simple">
-<li><p>Recettes : <code class="docutils literal notranslate"><span class="pre">data/RAW_recipes.csv</span></code></p></li>
-<li><p>Interactions : <code class="docutils literal notranslate"><span class="pre">data/RAW_interactions.csv</span></code></p></li>
-</ul>
-<blockquote>
-<div><p>Prérequis données : pour le moment l’application suppose que ces deux fichiers existent localement dans un dossier <code class="docutils literal notranslate"><span class="pre">data/</span></code> à la racine. Aucun téléchargement automatique n’est encore implémenté.</p>
-</div></blockquote>
 </section>
-<section id="fonctionnalites-actuelles">
-<h3>Fonctionnalités actuelles<a class="headerlink" href="#fonctionnalites-actuelles" title="Lien vers cette rubrique"></a></h3>
+<section id="pages-de-l-application">
+<h2>📋 Pages de l’Application<a class="headerlink" href="#pages-de-l-application" title="Lien vers cette rubrique"></a></h2>
+<section id="home">
+<h3>🏠 Home<a class="headerlink" href="#home" title="Lien vers cette rubrique"></a></h3>
+<p>Exploration générale des datasets avec métriques clés et statistiques descriptives.</p>
+</section>
+<section id="clustering-des-ingredients">
+<h3>🍳 Clustering des Ingrédients<a class="headerlink" href="#clustering-des-ingredients" title="Lien vers cette rubrique"></a></h3>
 <ul class="simple">
-<li><p>Page Display : aperçu (10 premières lignes) du dataset sélectionné (recettes ou interactions)</p></li>
-<li><p>Page Analysis1 : aperçu + métriques ingrédients (diversité, moyenne par recette)</p></li>
-<li><p>Page Analysis2 : aperçu des deux jeux + scatter « popularité vs note moyenne » (interactions)</p></li>
-<li><p>Chargement paresseux des données via <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code></p></li>
-<li><p>Architecture extensible via explorateurs spécialisés</p></li>
+<li><p>Matrice de co-occurrence 300×300 précalculée</p></li>
+<li><p>Clustering K-means (3-20 clusters)</p></li>
+<li><p>Visualisation t-SNE 2D interactive</p></li>
+<li><p>Sélection dynamique de 40 à 300 ingrédients</p></li>
 </ul>
 </section>
-<section id="diagramme-de-classes-plantuml">
-<h3>Diagramme de classes (PlantUML)<a class="headerlink" href="#diagramme-de-classes-plantuml" title="Lien vers cette rubrique"></a></h3>
-<p>Le diagramme suivant décrit l’architecture principale (base + explorateurs + application) :</p>
-<p><img alt="Schéma" src="_images/ClassDiagram.png" /></p>
-<p>Dans VS Code (extension PlantUML) vous pouvez simplement ouvrir le fichier et utiliser « Preview Current Diagram ».</p>
-<section id="evolution-possible">
-<h4>Évolution possible<a class="headerlink" href="#evolution-possible" title="Lien vers cette rubrique"></a></h4>
+<section id="analyse-de-popularite">
+<h3>📊 Analyse de Popularité<a class="headerlink" href="#analyse-de-popularite" title="Lien vers cette rubrique"></a></h3>
 <ul class="simple">
-<li><p>Ajouter d’autres pages d’analyse (ex: qualité nutritionnelle, temporalité)</p></li>
-<li><p>Extraire un registre d’analyses plug-and-play</p></li>
-<li><p>Remplacer <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> par matplotlib pur pour alléger les dépendances</p></li>
+<li><p>Relations popularité ↔ notes ↔ caractéristiques</p></li>
+<li><p>Preprocessing IQR avec détection d’outliers</p></li>
+<li><p>Scatter plots interactifs</p></li>
+<li><p>Segmentation par percentiles</p></li>
 </ul>
-<hr class="docutils" />
-<p><em>Ce README reflète l’état simplifié actuel après nettoyage des fonctionnalités inutilisées.</em></p>
 </section>
 </section>
+<section id="architecture">
+<h2>🏗️ Architecture<a class="headerlink" href="#architecture" title="Lien vers cette rubrique"></a></h2>
+<p>Voir le <a class="reference internal" href="ClassDiagram.html"><span class="std std-doc">Diagramme de Classes</span></a> pour l’architecture détaillée.</p>
+<p><strong>Modules principaux :</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">src/core/</span></code> : DataLoader, DataExplorer, InteractionsAnalyzer, CacheManager</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/components/</span></code> : Pages Streamlit (IngredientsClusteringPage, PopularityAnalysisPage)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">utils/</span></code> : IngredientsMatrixPreprocessor (génération offline de la matrice)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scripts/</span></code> : Utilitaires de lancement et téléchargement</p></li>
+</ul>
+</section>
+<section id="optimisations">
+<h2>⚡ Optimisations<a class="headerlink" href="#optimisations" title="Lien vers cette rubrique"></a></h2>
+<section id="preprocessing-offline">
+<h3>Preprocessing Offline<a class="headerlink" href="#preprocessing-offline" title="Lien vers cette rubrique"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>utils.preprocess_ingredients_matrix
+</pre></div>
+</div>
+<p>Génère la matrice 300×300 en ~5-10 min (une seule fois).</p>
+</section>
+<section id="systeme-de-cache">
+<h3>Système de Cache<a class="headerlink" href="#systeme-de-cache" title="Lien vers cette rubrique"></a></h3>
+<ul class="simple">
+<li><p>Données d’interactions : cache disque automatique</p></li>
+<li><p>Matrice d’ingrédients : versionnée dans git</p></li>
+<li><p>Cache Streamlit natif pour chargements optimisés</p></li>
+</ul>
+</section>
+</section>
+<section id="tests">
+<h2>🧪 Tests<a class="headerlink" href="#tests" title="Lien vers cette rubrique"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tous les tests (124)</span>
+uv<span class="w"> </span>run<span class="w"> </span>pytest
+
+<span class="c1"># Avec couverture</span>
+uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>src<span class="w"> </span>--cov-report<span class="o">=</span>html
+</pre></div>
+</div>
+</section>
+<section id="documentation-complete">
+<h2>📖 Documentation Complète<a class="headerlink" href="#documentation-complete" title="Lien vers cette rubrique"></a></h2>
+<p>Voir l”<a class="reference internal" href="api/modules.html"><span class="std std-doc">API Reference</span></a> pour la documentation détaillée de tous les modules.</p>
 </section>
 </section>
 
@@ -142,7 +192,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
-        <a href="index.html" class="btn btn-neutral float-left" title="Mangetamain - Analyse de Données de Recettes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Mangetamain - Analyse de Données Culinaires" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
         <a href="api/modules.html" class="btn btn-neutral float-right" title="src" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
